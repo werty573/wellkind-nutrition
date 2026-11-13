@@ -3,28 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wellkind Nutrition | Whole-food nutrition, Trinidad &amp; Tobago</title>
-<meta name="description" content="Whole-food blends, teas and meal plans made in Trinidad and Tobago. Order online and get your invoice instantly.">
-<meta name="theme-color" content="#F1F2EC">
+<title>Kairos Health | Nourish life intentionally</title>
+<meta name="description" content="Whole-food nutrition for busy professionals, fitness enthusiasts and everyday wellness seekers in Trinidad and Tobago.">
+<meta name="theme-color" content="#F6F3EA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235A6B2F'/%3E%3Cg fill='%23F6F3EA'%3E%3Cpath d='M32 37C25 32 25 19 32 11C39 19 39 32 32 37Z'/%3E%3Cpath d='M30 42C22 44 13 39 11 31C19 28 28 32 30 42Z'/%3E%3Cpath d='M34 42C42 44 51 39 53 31C45 28 36 32 34 42Z'/%3E%3Crect x='30.6' y='36' width='2.8' height='18' rx='1.4'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1610622929740-0b489c884e43?w=1800&q=72&auto=format&fit=crop">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="kairos-tree.webp">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="style.css">
-<script>try{const t=localStorage.getItem('wk-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{const t=localStorage.getItem('kh-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
+<!-- Kym's sprout mark, redrawn as a vector so it stays crisp everywhere -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprout" viewBox="0 0 64 64">
+    <path d="M32 37C25 32 25 19 32 11C39 19 39 32 32 37Z"/>
+    <path d="M30 42C22 44 13 39 11 31C19 28 28 32 30 42Z"/>
+    <path d="M34 42C42 44 51 39 53 31C45 28 36 32 34 42Z"/>
+    <rect x="30.6" y="36" width="2.8" height="18" rx="1.4"/>
+  </symbol>
+  <symbol id="leaf" viewBox="0 0 24 24">
+    <path d="M12 23C6 18 6 7 12 1C18 7 18 18 12 23Z"/>
+  </symbol>
+</svg>
 <span class="sentinel" aria-hidden="true"></span>
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a href="#top" class="brand" aria-label="Wellkind Nutrition home">
-      <span class="brand-mark" aria-hidden="true"></span>wellkind
+    <a href="#top" class="lockup" aria-label="Kairos Health home">
+      <svg class="sprout" aria-hidden="true"><use href="#sprout"/></svg>
+      <span class="lockup-text"><span class="lk-name">Kairos</span><span class="lk-sub">Health</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="#shop">Shop</a>
-      <a href="#ritual">Daily ritual</a>
+      <a href="#ritual">The right moment</a>
       <a href="#order">Order &amp; invoice</a>
     </nav>
     <div class="nav-actions">
@@ -35,38 +49,47 @@
 </header>
 
 <main id="top">
-  <!-- HERO -->
+  <!-- HERO: her logo, grown live -->
   <section class="hero wrap">
     <div class="hero-copy">
-      <h1>Nutrition that fits <em>your actual day.</em></h1>
-      <div class="hero-side">
-        <p class="lede">Whole-food blends, teas and meal plans made in Trinidad &amp; Tobago. Order online and get your invoice instantly.</p>
-        <div class="hero-ctas">
-          <a href="#shop" class="btn btn-primary">Shop the range <i class="ph ph-arrow-down-right"></i></a>
-          <a href="#order" class="btn btn-ghost">How ordering works</a>
-        </div>
+      <h1>Nourish life <em>intentionally.</em></h1>
+      <p class="lede">Whole-food nutrition for busy professionals, fitness enthusiasts and everyday wellness seekers across Trinidad &amp; Tobago.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary">Shop the range <i class="ph ph-arrow-down-right"></i></a>
+        <a href="#order" class="btn btn-ghost">How ordering works</a>
       </div>
     </div>
-    <figure class="hero-media">
-      <img src="https://images.unsplash.com/photo-1610622929740-0b489c884e43?w=1800&q=72&auto=format&fit=crop" alt="Two glasses of green smoothie on a white marble counter" width="1800" height="1200" fetchpriority="high">
-    </figure>
+    <div class="arch" role="img" aria-label="Kairos Health logo: an olive tree above the words Kairos Health">
+      <img class="arch-tree" src="kairos-tree.webp" alt="" width="860" height="795" fetchpriority="high">
+      <div class="arch-word" aria-hidden="true">
+        <span class="kw"><span>K</span><span>A</span><span>I</span><span>R</span><span>O</span><span>S</span></span>
+        <span class="kh"><i class="rule"></i><span>Health</span><i class="rule"></i></span>
+      </div>
+      <div class="leaves" aria-hidden="true">
+        <svg class="lf" style="--x:38%;--d:11s;--delay:2.2s;--s:1"><use href="#leaf"/></svg>
+        <svg class="lf" style="--x:62%;--d:13s;--delay:5s;--s:.8"><use href="#leaf"/></svg>
+        <svg class="lf" style="--x:24%;--d:12s;--delay:8.5s;--s:.7"><use href="#leaf"/></svg>
+        <svg class="lf" style="--x:74%;--d:14s;--delay:3.6s;--s:.9"><use href="#leaf"/></svg>
+        <svg class="lf" style="--x:50%;--d:15s;--delay:10.5s;--s:.75"><use href="#leaf"/></svg>
+      </div>
+    </div>
   </section>
 
   <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Whole-food blends</span><i class="ph ph-leaf"></i>
-      <span>Made in Trinidad &amp; Tobago</span><i class="ph ph-sun"></i>
-      <span>Plant protein</span><i class="ph ph-leaf"></i>
-      <span>Herbal teas</span><i class="ph ph-sun"></i>
-      <span>Weekly meal plans</span><i class="ph ph-leaf"></i>
-      <span>Invoices in one tap</span><i class="ph ph-sun"></i>
-      <span>Whole-food blends</span><i class="ph ph-leaf"></i>
-      <span>Made in Trinidad &amp; Tobago</span><i class="ph ph-sun"></i>
-      <span>Plant protein</span><i class="ph ph-leaf"></i>
-      <span>Herbal teas</span><i class="ph ph-sun"></i>
-      <span>Weekly meal plans</span><i class="ph ph-leaf"></i>
-      <span>Invoices in one tap</span><i class="ph ph-sun"></i>
+      <span>Nourish life intentionally</span><svg><use href="#sprout"/></svg>
+      <span>Whole-food blends</span><svg><use href="#sprout"/></svg>
+      <span>For busy professionals</span><svg><use href="#sprout"/></svg>
+      <span>For fitness enthusiasts</span><svg><use href="#sprout"/></svg>
+      <span>For everyday wellness</span><svg><use href="#sprout"/></svg>
+      <span>Made in Trinidad &amp; Tobago</span><svg><use href="#sprout"/></svg>
+      <span>Nourish life intentionally</span><svg><use href="#sprout"/></svg>
+      <span>Whole-food blends</span><svg><use href="#sprout"/></svg>
+      <span>For busy professionals</span><svg><use href="#sprout"/></svg>
+      <span>For fitness enthusiasts</span><svg><use href="#sprout"/></svg>
+      <span>For everyday wellness</span><svg><use href="#sprout"/></svg>
+      <span>Made in Trinidad &amp; Tobago</span><svg><use href="#sprout"/></svg>
     </div>
   </div>
 
@@ -75,11 +98,11 @@
     <div class="wrap">
       <div class="shop-head">
         <h2>The range</h2>
-        <div class="chips" role="tablist" aria-label="Filter products">
-          <button class="chip is-on" data-filter="all" role="tab" aria-selected="true">All</button>
-          <button class="chip" data-filter="blend" role="tab" aria-selected="false">Blends</button>
-          <button class="chip" data-filter="tea" role="tab" aria-selected="false">Teas</button>
-          <button class="chip" data-filter="plan" role="tab" aria-selected="false">Plans</button>
+        <div class="chips" role="tablist" aria-label="Shopping for">
+          <button class="chip is-on" data-filter="all" role="tab" aria-selected="true">Everything</button>
+          <button class="chip" data-filter="pro" role="tab" aria-selected="false"><i class="ph ph-briefcase"></i>Busy professionals</button>
+          <button class="chip" data-filter="fit" role="tab" aria-selected="false"><i class="ph ph-barbell"></i>Fitness</button>
+          <button class="chip" data-filter="every" role="tab" aria-selected="false"><i class="ph ph-plant"></i>Everyday wellness</button>
         </div>
       </div>
       <div class="products" data-products></div>
@@ -87,14 +110,15 @@
     </div>
   </section>
 
-  <!-- RITUAL -->
+  <!-- RITUAL / KAIROS MEANING -->
   <section class="ritual" id="ritual">
     <div class="wrap ritual-grid">
       <figure class="ritual-media">
         <img data-ritual-img src="https://images.unsplash.com/photo-1610622930110-3c076902312a?w=1100&q=70&auto=format&fit=crop" alt="Green smoothie being poured into a glass" width="1100" height="1375" loading="lazy">
       </figure>
       <div class="ritual-copy">
-        <h2>Small habits, every part of the day.</h2>
+        <p class="define"><span class="def-word">kairos</span> <span class="def-tag">(Greek)</span> the right moment.</p>
+        <h2>Every part of your day has one.</h2>
         <div class="seg" role="tablist" aria-label="Time of day">
           <button class="seg-btn is-on" data-ritual="0" role="tab" aria-selected="true"><i class="ph ph-sun-horizon"></i>Morning</button>
           <button class="seg-btn" data-ritual="1" role="tab" aria-selected="false"><i class="ph ph-sun"></i>Midday</button>
@@ -155,14 +179,15 @@
         </form>
 
         <article class="invoice" aria-label="Invoice preview">
+          <img class="inv-tree" src="kairos-tree.webp" alt="" width="860" height="795" loading="lazy">
           <header class="inv-head">
             <div>
-              <span class="brand inv-brand"><span class="brand-mark" aria-hidden="true"></span>wellkind</span>
-              <p class="inv-meta">Wellkind Nutrition<br>Trinidad &amp; Tobago<br>+1 868 489 5269</p>
+              <span class="lockup inv-lockup"><svg class="sprout" aria-hidden="true"><use href="#sprout"/></svg><span class="lockup-text"><span class="lk-name">Kairos</span><span class="lk-sub">Health</span></span></span>
+              <p class="inv-meta">Trinidad &amp; Tobago<br>+1 868 489 5269</p>
             </div>
             <div class="inv-id">
               <span class="inv-label">Invoice</span>
-              <strong data-inv-no>WK-0000</strong>
+              <strong data-inv-no>KH-0000</strong>
               <span data-inv-date></span>
             </div>
           </header>
@@ -177,6 +202,7 @@
             <div class="inv-total"><dt>Total due</dt><dd data-inv-total>TT$0.00</dd></div>
           </dl>
           <p class="inv-foot" data-inv-pay>Payment by bank transfer. Account details are sent with your confirmation.</p>
+          <p class="inv-slogan">Nourish life intentionally.</p>
         </article>
       </div>
     </div>
@@ -191,23 +217,23 @@
 </main>
 
 <footer class="footer">
+  <img class="foot-tree" src="kairos-tree.webp" alt="" width="860" height="795" loading="lazy">
   <div class="wrap foot-in">
-    <div>
-      <span class="brand foot-brand"><span class="brand-mark" aria-hidden="true"></span>wellkind</span>
-      <p class="foot-tag">Whole-food nutrition, made in Trinidad &amp; Tobago.</p>
+    <div class="foot-brand">
+      <span class="lockup foot-lockup"><svg class="sprout" aria-hidden="true"><use href="#sprout"/></svg><span class="lockup-text"><span class="lk-name">Kairos</span><span class="lk-sub">Health</span></span></span>
+      <p class="foot-tag">Nourish life <em>intentionally.</em></p>
     </div>
     <div class="foot-links">
-      <a href="#shop">Shop</a><a href="#ritual">Daily ritual</a><a href="#order">Order &amp; invoice</a>
+      <a href="#shop">Shop</a><a href="#ritual">The right moment</a><a href="#order">Order &amp; invoice</a>
       <a href="https://wa.me/18684895269" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i> 868 489 5269</a>
     </div>
   </div>
   <div class="wrap foot-base">
-    <span>Wellkind is a placeholder name. Products and prices are samples.</span>
+    <span>Products and prices shown are samples.</span>
     <a href="https://wa.me/18682591409" target="_blank" rel="noopener">Demo site by Portside Digital</a>
   </div>
 </footer>
 
-<!-- Mobile order bar -->
 <a href="#order" class="orderbar" aria-label="Review order and invoice" hidden>
   <span><strong data-bar-count>0 items</strong><span data-bar-total>TT$0</span></span>
   <span class="orderbar-cta">View invoice <i class="ph ph-arrow-right"></i></span>

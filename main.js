@@ -2,12 +2,12 @@
   const WA = '18684895269';
   const U = (id, w = 900) => `https://images.unsplash.com/${id}?w=${w}&q=70&auto=format&fit=crop`;
   const PRODUCTS = [
-    { id: 'greens', cat: 'blend', name: 'Daily Greens', sub: 'Blend, 30 servings', price: 180, img: 'photo-1610622929850-77f505c3ce5a', alt: 'Green smoothies in glasses' },
-    { id: 'protein', cat: 'blend', name: 'Plant Protein', sub: 'Vanilla, 1 kg tub', price: 260, img: 'photo-1774793476321-70f77d85a3a7', alt: 'A scoop of protein powder on a wooden surface' },
-    { id: 'bowl', cat: 'blend', name: 'Morning Bowl Mix', sub: 'Oats, seeds and fruit, 500 g', price: 95, img: 'photo-1627308594190-a057cd4bfac8', alt: 'Two smoothie bowls topped with banana, berries and granola' },
-    { id: 'tea', cat: 'tea', name: 'Wind-Down Tea', sub: 'Herbal, 20 bags', price: 65, img: 'photo-1558160074-4d7d8bdf4256', alt: 'Glass cup of tea beside a clay teapot' },
-    { id: 'plan', cat: 'plan', name: '4-Week Meal Plan', sub: 'Recipes and shopping lists', price: 350, img: 'photo-1543352632-5a4b24e4d2a6', alt: 'Three meal prep containers with rice, corn and vegetables' },
-    { id: 'consult', cat: 'plan', name: 'Nutrition Consult', sub: '60 minutes, in person or video', price: 300, img: 'photo-1631539338594-9c5f759baf0b', alt: 'Woman sipping a drink while reading' },
+    { id: 'greens', aud: 'pro every', name: 'Daily Greens', sub: 'Blend, 30 servings', price: 180, img: 'photo-1610622929850-77f505c3ce5a', alt: 'Green smoothies in glasses' },
+    { id: 'protein', aud: 'fit pro', name: 'Plant Protein', sub: 'Vanilla, 1 kg tub', price: 260, img: 'photo-1774793476321-70f77d85a3a7', alt: 'A scoop of protein powder on a wooden surface' },
+    { id: 'bowl', aud: 'pro every', name: 'Morning Bowl Mix', sub: 'Oats, seeds and fruit, 500 g', price: 95, img: 'photo-1627308594190-a057cd4bfac8', alt: 'Two smoothie bowls topped with banana, berries and granola' },
+    { id: 'tea', aud: 'every pro', name: 'Wind-Down Tea', sub: 'Herbal, 20 bags', price: 65, img: 'photo-1558160074-4d7d8bdf4256', alt: 'Glass cup of tea beside a clay teapot' },
+    { id: 'plan', aud: 'pro fit', name: '4-Week Meal Plan', sub: 'Recipes and shopping lists', price: 350, img: 'photo-1543352632-5a4b24e4d2a6', alt: 'Three meal prep containers with rice, corn and vegetables' },
+    { id: 'consult', aud: 'fit every pro', name: 'Nutrition Consult', sub: '60 minutes, in person or video', price: 300, img: 'photo-1631539338594-9c5f759baf0b', alt: 'Woman sipping a drink while reading' },
   ];
   const RITUALS = [
     { img: 'photo-1610622930110-3c076902312a', alt: 'Green smoothie being poured into a glass', title: 'Start with something green.', text: 'One scoop of Daily Greens in water or juice, and a bowl that keeps you full until lunch.', pair: ['greens', 'bowl'] },
@@ -17,8 +17,8 @@
   const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
   const money = n => 'TT$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const cart = {};
-  try { Object.assign(cart, JSON.parse(localStorage.getItem('wk-cart') || '{}')); } catch (e) {}
-  const save = () => { try { localStorage.setItem('wk-cart', JSON.stringify(cart)); } catch (e) {} };
+  try { Object.assign(cart, JSON.parse(localStorage.getItem('kh-cart') || '{}')); } catch (e) {}
+  const save = () => { try { localStorage.setItem('kh-cart', JSON.stringify(cart)); } catch (e) {} };
 
   /* Theme */
   const root = document.documentElement, tbtn = document.querySelector('.theme-toggle');
@@ -26,11 +26,11 @@
     const dark = root.dataset.theme === 'dark';
     tbtn.innerHTML = `<i class="ph ph-${dark ? 'sun' : 'moon'}"></i>`;
     tbtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    document.querySelector('meta[name=theme-color]').content = dark ? '#121510' : '#F1F2EC';
+    document.querySelector('meta[name=theme-color]').content = dark ? '#14160F' : '#F6F3EA';
   };
   tbtn.addEventListener('click', () => {
     root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    try { localStorage.setItem('wk-theme', root.dataset.theme); } catch (e) {}
+    try { localStorage.setItem('kh-theme', root.dataset.theme); } catch (e) {}
     syncTheme();
   });
   syncTheme();
@@ -49,7 +49,7 @@
   /* Products */
   const grid = document.querySelector('[data-products]');
   grid.innerHTML = PRODUCTS.map(p => `
-    <article class="product" data-cat="${p.cat}">
+    <article class="product" data-aud="${p.aud}">
       <div class="p-img"><img src="${U(p.img)}" alt="${p.alt}" width="900" height="720" loading="lazy"></div>
       <div class="p-body"><div><h3>${p.name}</h3><p class="p-sub">${p.sub}</p></div><span class="p-price">${money(p.price).replace('.00', '')}</span></div>
       <div class="p-actions" data-ctl="${p.id}">${control(p.id)}</div>
@@ -58,7 +58,7 @@
   document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
     document.querySelectorAll('.chip').forEach(x => { x.classList.toggle('is-on', x === c); x.setAttribute('aria-selected', x === c); });
     const f = c.dataset.filter;
-    grid.querySelectorAll('.product').forEach(p => p.hidden = !(f === 'all' || p.dataset.cat === f));
+    grid.querySelectorAll('.product').forEach(p => { const show = f === 'all' || p.dataset.aud.split(' ').includes(f); p.hidden = !show; if (show) { p.style.animation = 'none'; p.offsetWidth; p.style.animation = ''; } });
     grid.scrollTo({ left: 0, behavior: 'smooth' });
   }));
 
@@ -96,8 +96,8 @@
   /* Invoice */
   const form = document.getElementById('order-form');
   const invNo = (() => {
-    let n; try { n = localStorage.getItem('wk-inv'); } catch (e) {}
-    if (!n) { n = 'WK-' + String(Date.now()).slice(-6, -2); try { localStorage.setItem('wk-inv', n); } catch (e) {} }
+    let n; try { n = localStorage.getItem('kh-inv'); } catch (e) {}
+    if (!n) { n = 'KH-' + String(Date.now()).slice(-6, -2); try { localStorage.setItem('kh-inv', n); } catch (e) {} }
     return n;
   })();
   document.querySelector('[data-inv-no]').textContent = invNo;
@@ -168,7 +168,7 @@
     if (!t.items.length) ok = false;
     if (!ok) { (form.querySelector('.has-err input') || cartErr).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
     const msg = [
-      `Hi Wellkind, I'd like to place an order.`, ``,
+      `Hi Kairos Health, I'd like to place an order.`, ``,
       `Invoice ${invNo}`,
       ...t.items.map(i => `- ${i.q} x ${i.name} (${money(i.price * i.q)})`),
       `Subtotal: ${money(t.sub)}`,
