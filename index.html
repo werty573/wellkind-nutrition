@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wellkind Nutrition | Whole-food nutrition, Trinidad &amp; Tobago</title>
+<meta name="description" content="Whole-food blends, teas and meal plans made in Trinidad and Tobago. Order online and get your invoice instantly.">
+<meta name="theme-color" content="#F1F2EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1610622929740-0b489c884e43?w=1800&q=72&auto=format&fit=crop">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="style.css">
+<script>try{const t=localStorage.getItem('wk-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<span class="sentinel" aria-hidden="true"></span>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="Wellkind Nutrition home">
+      <span class="brand-mark" aria-hidden="true"></span>wellkind
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#ritual">Daily ritual</a>
+      <a href="#order">Order &amp; invoice</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode"><i class="ph ph-moon"></i></button>
+      <a href="#order" class="cart-btn" aria-label="View your order"><i class="ph ph-bag-simple"></i><span class="cart-count" data-count>0</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <h1>Nutrition that fits <em>your actual day.</em></h1>
+      <div class="hero-side">
+        <p class="lede">Whole-food blends, teas and meal plans made in Trinidad &amp; Tobago. Order online and get your invoice instantly.</p>
+        <div class="hero-ctas">
+          <a href="#shop" class="btn btn-primary">Shop the range <i class="ph ph-arrow-down-right"></i></a>
+          <a href="#order" class="btn btn-ghost">How ordering works</a>
+        </div>
+      </div>
+    </div>
+    <figure class="hero-media">
+      <img src="https://images.unsplash.com/photo-1610622929740-0b489c884e43?w=1800&q=72&auto=format&fit=crop" alt="Two glasses of green smoothie on a white marble counter" width="1800" height="1200" fetchpriority="high">
+    </figure>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Whole-food blends</span><i class="ph ph-leaf"></i>
+      <span>Made in Trinidad &amp; Tobago</span><i class="ph ph-sun"></i>
+      <span>Plant protein</span><i class="ph ph-leaf"></i>
+      <span>Herbal teas</span><i class="ph ph-sun"></i>
+      <span>Weekly meal plans</span><i class="ph ph-leaf"></i>
+      <span>Invoices in one tap</span><i class="ph ph-sun"></i>
+      <span>Whole-food blends</span><i class="ph ph-leaf"></i>
+      <span>Made in Trinidad &amp; Tobago</span><i class="ph ph-sun"></i>
+      <span>Plant protein</span><i class="ph ph-leaf"></i>
+      <span>Herbal teas</span><i class="ph ph-sun"></i>
+      <span>Weekly meal plans</span><i class="ph ph-leaf"></i>
+      <span>Invoices in one tap</span><i class="ph ph-sun"></i>
+    </div>
+  </div>
+
+  <!-- SHOP -->
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="shop-head">
+        <h2>The range</h2>
+        <div class="chips" role="tablist" aria-label="Filter products">
+          <button class="chip is-on" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="chip" data-filter="blend" role="tab" aria-selected="false">Blends</button>
+          <button class="chip" data-filter="tea" role="tab" aria-selected="false">Teas</button>
+          <button class="chip" data-filter="plan" role="tab" aria-selected="false">Plans</button>
+        </div>
+      </div>
+      <div class="products" data-products></div>
+      <p class="fine">Sample products and prices for this demo. Your real range drops in here.</p>
+    </div>
+  </section>
+
+  <!-- RITUAL -->
+  <section class="ritual" id="ritual">
+    <div class="wrap ritual-grid">
+      <figure class="ritual-media">
+        <img data-ritual-img src="https://images.unsplash.com/photo-1610622930110-3c076902312a?w=1100&q=70&auto=format&fit=crop" alt="Green smoothie being poured into a glass" width="1100" height="1375" loading="lazy">
+      </figure>
+      <div class="ritual-copy">
+        <h2>Small habits, every part of the day.</h2>
+        <div class="seg" role="tablist" aria-label="Time of day">
+          <button class="seg-btn is-on" data-ritual="0" role="tab" aria-selected="true"><i class="ph ph-sun-horizon"></i>Morning</button>
+          <button class="seg-btn" data-ritual="1" role="tab" aria-selected="false"><i class="ph ph-sun"></i>Midday</button>
+          <button class="seg-btn" data-ritual="2" role="tab" aria-selected="false"><i class="ph ph-moon-stars"></i>Evening</button>
+        </div>
+        <div class="ritual-body" data-ritual-body aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER + INVOICE -->
+  <section class="order" id="order">
+    <div class="wrap">
+      <h2 class="order-title">Order online. Your invoice is ready before you hit send.</h2>
+      <div class="order-grid">
+        <form class="order-form" id="order-form" novalidate>
+          <div class="field">
+            <label for="f-name">Full name</label>
+            <input id="f-name" name="name" autocomplete="name" required>
+            <small class="err" data-err="name">Please add your name.</small>
+          </div>
+          <div class="field">
+            <label for="f-phone">WhatsApp number</label>
+            <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="868 000 0000" required>
+            <small class="err" data-err="phone">Please add a number we can reach.</small>
+          </div>
+          <div class="field">
+            <label for="f-area">Area</label>
+            <select id="f-area" name="area">
+              <option>Port of Spain</option><option>Diego Martin</option><option>San Juan / Barataria</option>
+              <option>Arima</option><option>Chaguanas</option><option>Couva</option>
+              <option>San Fernando</option><option>Point Fortin</option><option>Sangre Grande</option><option>Tobago</option>
+            </select>
+          </div>
+          <fieldset class="field">
+            <legend>Delivery</legend>
+            <div class="toggle-row">
+              <label class="opt"><input type="radio" name="ship" value="delivery" checked><span><strong>Delivery</strong>TT$40, 1 to 3 days</span></label>
+              <label class="opt"><input type="radio" name="ship" value="pickup"><span><strong>Pickup</strong>Free, by appointment</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Payment</legend>
+            <div class="toggle-row">
+              <label class="opt"><input type="radio" name="pay" value="Bank transfer" checked><span><strong>Bank transfer</strong>Details on invoice</span></label>
+              <label class="opt"><input type="radio" name="pay" value="Cash on delivery"><span><strong>Cash</strong>On delivery or pickup</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="f-notes">Notes <span class="opt-tag">(optional)</span></label>
+            <textarea id="f-notes" name="notes" rows="2" placeholder="Allergies, delivery times, gate code"></textarea>
+          </div>
+          <small class="err err-cart" data-err="cart">Add at least one item from the range first.</small>
+          <div class="form-ctas">
+            <button type="submit" class="btn btn-primary"><i class="ph ph-whatsapp-logo"></i> Send order on WhatsApp</button>
+            <button type="button" class="btn btn-ghost" data-print><i class="ph ph-file-pdf"></i> Save invoice</button>
+          </div>
+        </form>
+
+        <article class="invoice" aria-label="Invoice preview">
+          <header class="inv-head">
+            <div>
+              <span class="brand inv-brand"><span class="brand-mark" aria-hidden="true"></span>wellkind</span>
+              <p class="inv-meta">Wellkind Nutrition<br>Trinidad &amp; Tobago<br>+1 868 489 5269</p>
+            </div>
+            <div class="inv-id">
+              <span class="inv-label">Invoice</span>
+              <strong data-inv-no>WK-0000</strong>
+              <span data-inv-date></span>
+            </div>
+          </header>
+          <div class="inv-bill">
+            <span class="inv-label">Billed to</span>
+            <p data-inv-bill>Your name<br>Area</p>
+          </div>
+          <div class="inv-lines" data-inv-lines></div>
+          <dl class="inv-totals">
+            <div><dt>Subtotal</dt><dd data-inv-sub>TT$0.00</dd></div>
+            <div><dt data-inv-ship-label>Delivery</dt><dd data-inv-ship>TT$40.00</dd></div>
+            <div class="inv-total"><dt>Total due</dt><dd data-inv-total>TT$0.00</dd></div>
+          </dl>
+          <p class="inv-foot" data-inv-pay>Payment by bank transfer. Account details are sent with your confirmation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOD TO KNOW -->
+  <section class="notes wrap" aria-label="Good to know">
+    <div class="note"><i class="ph ph-truck"></i><div><h3>Islandwide delivery</h3><p>Trinidad in 1 to 3 days, Tobago by courier. Or pick up for free.</p></div></div>
+    <div class="note"><i class="ph ph-receipt"></i><div><h3>An invoice for every order</h3><p>Numbered, dated and saved as a PDF in one tap. Handy for your records.</p></div></div>
+    <div class="note"><i class="ph ph-plant"></i><div><h3>Nothing hidden</h3><p>Every ingredient is listed on the pack and on this site.</p></div></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div>
+      <span class="brand foot-brand"><span class="brand-mark" aria-hidden="true"></span>wellkind</span>
+      <p class="foot-tag">Whole-food nutrition, made in Trinidad &amp; Tobago.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#shop">Shop</a><a href="#ritual">Daily ritual</a><a href="#order">Order &amp; invoice</a>
+      <a href="https://wa.me/18684895269" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo"></i> 868 489 5269</a>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <span>Wellkind is a placeholder name. Products and prices are samples.</span>
+    <a href="https://wa.me/18682591409" target="_blank" rel="noopener">Demo site by Portside Digital</a>
+  </div>
+</footer>
+
+<!-- Mobile order bar -->
+<a href="#order" class="orderbar" aria-label="Review order and invoice" hidden>
+  <span><strong data-bar-count>0 items</strong><span data-bar-total>TT$0</span></span>
+  <span class="orderbar-cta">View invoice <i class="ph ph-arrow-right"></i></span>
+</a>
+
+<script src="main.js"></script>
+</body>
+</html>
