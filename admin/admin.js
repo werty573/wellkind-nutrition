@@ -167,6 +167,7 @@
   pf.addEventListener('input', pv);
   $$('[data-q]', pf).forEach(b => b.addEventListener('click', () => { pf.stock.value = Math.max(0, (Number(pf.stock.value) || 0) + Number(b.dataset.q)); }));
   sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
+  $('[data-close]').addEventListener('click', () => sheet.close());
 
   /* Photo: shrink on the phone before saving, so pages stay fast */
   $('[data-file]').addEventListener('change', async e => {
