@@ -17,6 +17,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0}
+[hidden]{display:none!important}
 html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:80px}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent}
 img{display:block;max-width:100%;height:auto}
@@ -25,7 +26,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0;touch-action:manipulation}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
 .wrap{width:min(1240px,100% - 40px);margin-inline:auto}
-h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.01em;line-height:1.05}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.01em;line-height:1.05;font-variant-numeric:lining-nums}
 h2{font-size:clamp(36px,4.2vw,58px)}
 h3{font-weight:600}
 em{font-style:italic;font-family:var(--display)}
@@ -129,6 +130,10 @@ em{font-style:italic;font-family:var(--display)}
 .stepper button{width:44px;height:44px;display:grid;place-items:center;font-size:17px;color:inherit}
 .stepper span{min-width:26px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
 .fine{margin-top:28px;font-size:14px;color:var(--muted)}
+.p-low{color:var(--accent);font-weight:500;white-space:nowrap}
+.product.is-out .p-img img{filter:grayscale(.7);opacity:.7}
+.add.is-out{background:transparent;border:1px dashed var(--line);color:var(--muted);cursor:not-allowed}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
 
 /* Ritual */
 .ritual{padding:clamp(48px,6vw,80px) 0}
@@ -194,7 +199,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);
 .inv-lockup .sprout{width:26px;height:26px}
 .inv-meta{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.5}
 .inv-id{text-align:right;display:grid;gap:2px;align-content:start;font-size:14px;color:var(--muted)}
-.inv-id strong{font-family:var(--display);font-size:28px;font-weight:600;color:var(--paper-ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.inv-id strong{font-family:var(--display);font-size:28px;font-weight:600;color:var(--paper-ink);font-variant-numeric:lining-nums tabular-nums;line-height:1.1}
 .inv-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .inv-bill{padding:18px 0;border-bottom:1px solid var(--line)}
 .inv-bill p{margin-top:4px;font-size:15px}

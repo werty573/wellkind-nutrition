@@ -1,21 +1,15 @@
 (() => {
   const WA = '18684895269';
   const U = (id, w = 900) => `https://images.unsplash.com/${id}?w=${w}&q=70&auto=format&fit=crop`;
-  const PRODUCTS = [
-    { id: 'greens', aud: 'pro every', name: 'Daily Greens', sub: 'Blend, 30 servings', price: 180, img: 'photo-1610622929850-77f505c3ce5a', alt: 'Green smoothies in glasses' },
-    { id: 'protein', aud: 'fit pro', name: 'Plant Protein', sub: 'Vanilla, 1 kg tub', price: 260, img: 'photo-1774793476321-70f77d85a3a7', alt: 'A scoop of protein powder on a wooden surface' },
-    { id: 'bowl', aud: 'pro every', name: 'Morning Bowl Mix', sub: 'Oats, seeds and fruit, 500 g', price: 95, img: 'photo-1627308594190-a057cd4bfac8', alt: 'Two smoothie bowls topped with banana, berries and granola' },
-    { id: 'tea', aud: 'every pro', name: 'Wind-Down Tea', sub: 'Herbal, 20 bags', price: 65, img: 'photo-1558160074-4d7d8bdf4256', alt: 'Glass cup of tea beside a clay teapot' },
-    { id: 'plan', aud: 'pro fit', name: '4-Week Meal Plan', sub: 'Recipes and shopping lists', price: 350, img: 'photo-1543352632-5a4b24e4d2a6', alt: 'Three meal prep containers with rice, corn and vegetables' },
-    { id: 'consult', aud: 'fit every pro', name: 'Nutrition Consult', sub: '60 minutes, in person or video', price: 300, img: 'photo-1631539338594-9c5f759baf0b', alt: 'Woman sipping a drink while reading' },
-  ];
+  let ALL = KH.products(), PRODUCTS = ALL.filter(p => !p.hidden);
   const RITUALS = [
     { img: 'photo-1610622930110-3c076902312a', alt: 'Green smoothie being poured into a glass', title: 'Start with something green.', text: 'One scoop of Daily Greens in water or juice, and a bowl that keeps you full until lunch.', pair: ['greens', 'bowl'] },
     { img: 'photo-1767277672167-18105701959b', alt: 'A table of healthy bowls and plates', title: 'Keep lunch simple.', text: 'A protein shake between meetings, or a meal plan that does the thinking for you.', pair: ['protein', 'plan'] },
     { img: 'photo-1567922045116-2a00fae2ed03', alt: 'A small bowl of herbal tea among green leaves', title: 'Slow the evening down.', text: 'A caffeine-free herbal cup after dinner. Book a consult when you want a plan made for you.', pair: ['tea', 'consult'] },
   ];
-  const byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
-  const money = n => 'TT$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+  const money = KH.money;
+  const U2 = (p, w) => KH.img(p, w);
   const cart = {};
   try { Object.assign(cart, JSON.parse(localStorage.getItem('kh-cart') || '{}')); } catch (e) {}
   const save = () => { try { localStorage.setItem('kh-cart', JSON.stringify(cart)); } catch (e) {} };
@@ -41,23 +35,29 @@
 
   /* Add / stepper control */
   const control = id => {
+    const p = byId[id]; if (!p) return '';
     const q = cart[id] || 0;
-    return q ? `<div class="stepper" data-id="${id}"><button type="button" data-dec aria-label="Remove one ${byId[id].name}"><i class="ph ph-minus"></i></button><span>${q}</span><button type="button" data-inc aria-label="Add one ${byId[id].name}"><i class="ph ph-plus"></i></button></div>`
+    if (p.stock <= 0 && !q) return `<button type="button" class="add is-out" disabled>Sold out</button>`;
+    return q ? `<div class="stepper" data-id="${id}"><button type="button" data-dec aria-label="Remove one ${KH.esc(p.name)}"><i class="ph ph-minus"></i></button><span>${q}</span><button type="button" data-inc aria-label="Add one ${KH.esc(p.name)}" ${q >= p.stock ? 'disabled' : ''}><i class="ph ph-plus"></i></button></div>`
              : `<button type="button" class="add" data-add="${id}"><i class="ph ph-plus"></i> Add</button>`;
   };
 
   /* Products */
   const grid = document.querySelector('[data-products]');
-  grid.innerHTML = PRODUCTS.map(p => `
-    <article class="product" data-aud="${p.aud}">
-      <div class="p-img"><img src="${U(p.img)}" alt="${p.alt}" width="900" height="720" loading="lazy"></div>
-      <div class="p-body"><div><h3>${p.name}</h3><p class="p-sub">${p.sub}</p></div><span class="p-price">${money(p.price).replace('.00', '')}</span></div>
+  let filter = 'all';
+  const renderProducts = () => {
+    grid.innerHTML = PRODUCTS.map(p => `
+    <article class="product${p.stock <= 0 ? ' is-out' : ''}" data-aud="${KH.esc(p.aud || '')}" ${filter === 'all' || (p.aud || '').split(' ').includes(filter) ? '' : 'hidden'}>
+      <div class="p-img"><img src="${U2(p)}" alt="${KH.esc(p.alt || p.name)}" width="900" height="720" loading="lazy"></div>
+      <div class="p-body"><div><h3>${KH.esc(p.name)}</h3><p class="p-sub">${KH.esc(p.sub || '')}${p.stock > 0 && p.stock <= 5 ? ` <span class="p-low">Only ${p.stock} left</span>` : ''}</p></div><span class="p-price">${money(p.price).replace('.00', '')}</span></div>
       <div class="p-actions" data-ctl="${p.id}">${control(p.id)}</div>
     </article>`).join('');
+  };
+  renderProducts();
 
   document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
     document.querySelectorAll('.chip').forEach(x => { x.classList.toggle('is-on', x === c); x.setAttribute('aria-selected', x === c); });
-    const f = c.dataset.filter;
+    const f = filter = c.dataset.filter;
     grid.querySelectorAll('.product').forEach(p => { const show = f === 'all' || p.dataset.aud.split(' ').includes(f); p.hidden = !show; if (show) { p.style.animation = 'none'; p.offsetWidth; p.style.animation = ''; } });
     grid.scrollTo({ left: 0, behavior: 'smooth' });
   }));
@@ -68,7 +68,7 @@
   const renderRitual = () => {
     const r = RITUALS[rIdx];
     rBody.innerHTML = `<h3 style="font-size:24px">${r.title}</h3><p style="margin-top:10px">${r.text}</p>
-      <div class="pair">${r.pair.map(id => { const p = byId[id]; return `<div class="pair-item"><img src="${U(p.img, 160)}" alt="" width="52" height="52"><div><strong>${p.name}</strong><span>${money(p.price).replace('.00', '')}</span></div><div data-ctl="${id}" style="flex:none">${control(id)}</div></div>`; }).join('')}</div>`;
+      <div class="pair">${r.pair.filter(id => byId[id]).map(id => { const p = byId[id]; return `<div class="pair-item"><img src="${U2(p, 160)}" alt="" width="52" height="52"><div><strong>${p.name}</strong><span>${money(p.price).replace('.00', '')}</span></div><div data-ctl="${id}" style="flex:none">${control(id)}</div></div>`; }).join('')}</div>`;
   };
   const setRitual = i => {
     if (i === rIdx) return;
@@ -88,23 +88,20 @@
     const add = e.target.closest('[data-add]'), inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]');
     if (!add && !inc && !dec) return;
     const id = add ? add.dataset.add : e.target.closest('[data-id]').dataset.id;
-    cart[id] = (cart[id] || 0) + (dec ? -1 : 1);
+    if (!byId[id]) return;
+    cart[id] = Math.min((cart[id] || 0) + (dec ? -1 : 1), byId[id].stock);
     if (cart[id] <= 0) delete cart[id];
     update(id);
   });
 
   /* Invoice */
   const form = document.getElementById('order-form');
-  const invNo = (() => {
-    let n; try { n = localStorage.getItem('kh-inv'); } catch (e) {}
-    if (!n) { n = 'KH-' + String(Date.now()).slice(-6, -2); try { localStorage.setItem('kh-inv', n); } catch (e) {} }
-    return n;
-  })();
+  let invNo = KH.nextInvoice();
   document.querySelector('[data-inv-no]').textContent = invNo;
   document.querySelector('[data-inv-date]').textContent = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
   const totals = () => {
-    const items = Object.entries(cart).map(([id, q]) => ({ ...byId[id], q }));
+    const items = Object.entries(cart).filter(([id]) => byId[id]).map(([id, q]) => ({ ...byId[id], q }));
     const sub = items.reduce((s, i) => s + i.price * i.q, 0);
     const pickup = form.ship.value === 'pickup';
     const ship = items.length && !pickup ? 40 : 0;
@@ -181,12 +178,25 @@
       form.notes.value.trim() ? `Notes: ${form.notes.value.trim()}` : ''
     ].filter((l, i, a) => l !== '' || a[i - 1] !== '').join('\n');
     window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    /* Demo: the order also lands in Kym's admin, and stock goes down */
+    const orders = KH.orders();
+    orders.unshift({ no: invNo, name: form.name.value.trim(), area: form.area.value, ship: t.pickup ? 'pickup' : 'delivery', pay: form.pay.value, items: t.items.map(i => [i.id, i.q]), total: t.total, status: 'new', at: new Date().toISOString() });
+    KH.saveOrders(orders);
+    const all = KH.products(); t.items.forEach(i => { const p = all.find(x => x.id === i.id); if (p) p.stock = Math.max(0, p.stock - i.q); }); KH.saveProducts(all);
+    KH.bumpInvoice(); invNo = KH.nextInvoice(); document.querySelector('[data-inv-no]').textContent = invNo;
+    Object.keys(cart).forEach(k => delete cart[k]); reload(); update();
   });
   form.querySelectorAll('input').forEach(i => i.addEventListener('input', () => i.closest('.field').classList.remove('has-err')));
 
   document.querySelector('[data-print]').addEventListener('click', () => { renderInvoice(); window.print(); });
 
-  Object.keys(cart).forEach(id => { if (!byId[id]) delete cart[id]; });
-  PRODUCTS.forEach(p => document.querySelectorAll(`[data-ctl="${p.id}"]`).forEach(el => el.innerHTML = control(p.id)));
+  /* Reload products when the admin (another tab) changes them */
+  const reload = () => {
+    ALL = KH.products(); PRODUCTS = ALL.filter(p => !p.hidden); byId = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
+    Object.keys(cart).forEach(id => { if (!byId[id]) delete cart[id]; else cart[id] = Math.min(cart[id], byId[id].stock); if (cart[id] <= 0) delete cart[id]; });
+    renderProducts(); renderRitual();
+  };
+  addEventListener('storage', e => { if (e.key === 'kh-products' || e.key === null) { reload(); update(); } if (e.key === 'kh-inv-seq') { invNo = KH.nextInvoice(); document.querySelector('[data-inv-no]').textContent = invNo; } });
+  reload();
   update();
 })();
